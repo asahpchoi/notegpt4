@@ -8,9 +8,16 @@
   ],
   "main": "src/index.js",
   "dependencies": {
+    "@emotion/react": "^11.11.0",
+    "@emotion/styled": "^11.11.0",
+    "@mui/icons-material": "^5.11.16",
+    "@mui/material": "^5.12.3",
+    "axios": "^1.4.0",
+    "firebase": "^9.21.0",
     "loader-utils": "3.2.1",
     "react": "18.2.0",
     "react-dom": "18.2.0",
+    "react-mic": "^12.4.6",
     "react-scripts": "5.0.1"
   },
   "devDependencies": {
