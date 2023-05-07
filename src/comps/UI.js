@@ -16,6 +16,7 @@ import AdbIcon from "@mui/icons-material/Adb";
 import Typography from "@mui/material/Typography";
 import MicIcon from "@mui/icons-material/Mic";
 import Fab from "@mui/material/Fab";
+import ShowText from "./showText.js";
 
 const LoadingPage = ({ loading }) => {
   return (
@@ -53,6 +54,7 @@ const Summary = ({ summary }) => {
         <ShareIcon />
         Share
       </Button>
+      <ShowText />
     </>
   );
 };
@@ -134,16 +136,8 @@ const Transcript = ({
           <SummarizeIcon />
           Get Summary
         </Button>
-        <Button
-          variant="outlined"
-          onClick={() => {
-            navigator.share({ title: "Happy Share", text: transcript });
-          }}
-        >
-          <ShareIcon />
-          Share
-        </Button>
       </ButtonGroup>
+      <ShowText content={transcript} />
     </>
   );
 };
