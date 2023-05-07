@@ -38,6 +38,14 @@ export default function ShowText({ content }) {
           >
             Share
           </Button>
+          <Button
+            onClick={() => {
+              console.log({ content });
+              navigator.clipboard.writeText(content);
+            }}
+          >
+            Copy
+          </Button>
         </DialogActions>
       </Dialog>
     </div>
