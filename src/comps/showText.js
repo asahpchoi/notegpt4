@@ -18,17 +18,12 @@ export default function ShowText({ content }) {
     setOpen(false);
   };
 
-  const handleShare = (content) => {
-    console.log(content);
-  };
-
   return (
     <div>
       <Button variant="outlined" onClick={handleClickOpen}>
         Show
       </Button>
       <Dialog open={open} onClose={handleClose} fullScreen>
-        <DialogTitle>Subscribe</DialogTitle>
         <DialogContent>
           <DialogContentText>
             <pre>{content}</pre>
