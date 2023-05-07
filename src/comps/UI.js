@@ -15,6 +15,7 @@ import Toolbar from "@mui/material/Toolbar";
 import AdbIcon from "@mui/icons-material/Adb";
 import Typography from "@mui/material/Typography";
 import MicIcon from "@mui/icons-material/Mic";
+import MicOffIcon from "@mui/icons-material/MicOff";
 import Fab from "@mui/material/Fab";
 import ShowText from "./showText.js";
 
@@ -45,16 +46,8 @@ const Summary = ({ summary }) => {
         className="multiline"
         rows={4}
       />
-      <Button
-        variant="outlined"
-        onClick={() => {
-          navigator.share({ title: "Happy Share", text: summary });
-        }}
-      >
-        <ShareIcon />
-        Share
-      </Button>
-      <ShowText />
+
+      <ShowText content={summary} />
     </>
   );
 };
@@ -74,7 +67,7 @@ const Recording = ({ setRecording, recording }) => {
         setRecording(!recording);
       }}
     >
-      <MicIcon />
+      {!recording ? <MicIcon /> : <MicOffIcon />}
     </Fab>
   );
 };
