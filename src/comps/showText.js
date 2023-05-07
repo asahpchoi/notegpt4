@@ -1,11 +1,15 @@
 import * as React from "react";
 import Button from "@mui/material/Button";
-import TextField from "@mui/material/TextField";
+
 import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
-import DialogTitle from "@mui/material/DialogTitle";
+import Slide from "@mui/material/Slide";
+
+const Transition = React.forwardRef(function Transition(props, ref) {
+  return <Slide direction="up" ref={ref} {...props} />;
+});
 
 export default function ShowText({ content }) {
   const [open, setOpen] = React.useState(false);
@@ -23,14 +27,20 @@ export default function ShowText({ content }) {
       <Button variant="outlined" onClick={handleClickOpen}>
         Show
       </Button>
-      <Dialog open={open} onClose={handleClose} fullScreen>
+      <Dialog
+        open={open}
+        onClose={handleClose}
+        fullScreen
+        scroll="paper"
+        TransitionComponent={Transition}
+      >
         <DialogContent>
           <DialogContentText>
             <pre>{content}</pre>
           </DialogContentText>
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleClose}>Cancel</Button>
+          <Button onClick={handleClose}>Close</Button>
           <Button
             onClick={() => {
               navigator.share({ title: "Happy Share", text: content });
