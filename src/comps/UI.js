@@ -44,7 +44,7 @@ const Summary = ({ summary }) => {
         variant="filled"
         value={summary}
         className="multiline"
-        rows={4}
+        rows={8}
       />
 
       <ShowText content={summary} />
@@ -88,7 +88,7 @@ const Transcript = ({
       <TextField
         label="Transcript or URL"
         multiline
-        rows={4}
+        rows={8}
         variant="filled"
         value={transcript}
         className="multiline"
@@ -123,7 +123,7 @@ const Transcript = ({
             setLoading(false);
           }}
         >
-          Summary
+          Run
         </Button>
 
         <ShowText content={transcript} />
