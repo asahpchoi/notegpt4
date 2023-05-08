@@ -32,13 +32,11 @@ body {
   flex-flow: column;
   height: 100%;
   text-align: center;
-  align-items: center;
-  width: 100vw;
 }
 
 .box .row {
-  border: 1px dotted grey;
-  width: 100vw;
+  width: calc(100vw - 2em);
+  padding: 1em;
 }
 
 .box .row.header {
