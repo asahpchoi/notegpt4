@@ -5,10 +5,16 @@
 
 .input {
   margin: 1em;
+  padding: 1em;
 }
 
 Button {
   min-width: 50%;
+}
+
+#micicon {
+  position: relative;
+  top: 24px;
 }
 
 html,

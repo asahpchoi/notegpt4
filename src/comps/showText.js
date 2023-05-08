@@ -1,6 +1,6 @@
 import * as React from "react";
 import Button from "@mui/material/Button";
-
+import Snackbar from "@mui/material/Snackbar";
 import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
@@ -13,6 +13,8 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 
 export default function ShowText({ content }) {
   const [open, setOpen] = React.useState(false);
+  const [notification, setNotification] = React.useState(false);
+  const [message, setMessage] = React.useState("");
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -23,9 +25,9 @@ export default function ShowText({ content }) {
   };
 
   return (
-    <div>
+    <span>
       <Button variant="outlined" onClick={handleClickOpen}>
-        Show
+        detail
       </Button>
       <Dialog
         open={open}
@@ -50,7 +52,8 @@ export default function ShowText({ content }) {
           </Button>
           <Button
             onClick={() => {
-              console.log({ content });
+              setMessage("message copied!");
+              setNotification(true);
               navigator.clipboard.writeText(content);
             }}
           >
@@ -58,6 +61,14 @@ export default function ShowText({ content }) {
           </Button>
         </DialogActions>
       </Dialog>
-    </div>
+      <Snackbar
+        open={notification}
+        autoHideDuration={3000}
+        onClose={() => {
+          setNotification(false);
+        }}
+        message={message}
+      />
+    </span>
   );
 }

@@ -63,11 +63,12 @@ const Recording = ({ setRecording, recording }) => {
   return (
     <Fab
       color="primary"
+      id="micicon"
       onClick={() => {
         setRecording(!recording);
       }}
     >
-      {!recording ? <MicIcon /> : <MicOffIcon />}
+      {!recording ? <MicIcon /> : <MicOffIcon color="secondary" />}
     </Fab>
   );
 };
@@ -96,28 +97,24 @@ const Transcript = ({
         }}
       />
       <Box className="input">
-        <FormControl fullWidth>
-          <InputLabel id="actaslabel">Act as</InputLabel>
-          <Select
-            labelId="actaslabel"
-            value={actas}
-            label="Act as"
-            onChange={(event) => {
-              setActas(event.target.value);
-            }}
-            defaultValue=""
-          >
-            {actasList.map((l, i) => {
-              return (
-                <MenuItem key={i} value={l}>
-                  {l}
-                </MenuItem>
-              );
-            })}
-          </Select>
-        </FormControl>
-      </Box>
-      <ButtonGroup>
+        <InputLabel id="actaslabel">Act as</InputLabel>
+        <Select
+          labelId="actaslabel"
+          value={actas}
+          onChange={(event) => {
+            setActas(event.target.value);
+          }}
+          defaultValue=""
+        >
+          {actasList.map((l, i) => {
+            return (
+              <MenuItem key={i} value={l}>
+                {l}
+              </MenuItem>
+            );
+          })}
+        </Select>
+
         <Button
           variant="outlined"
           onClick={async () => {
@@ -126,11 +123,11 @@ const Transcript = ({
             setLoading(false);
           }}
         >
-          <SummarizeIcon />
-          Get Summary
+          Summary
         </Button>
-      </ButtonGroup>
-      <ShowText content={transcript} />
+
+        <ShowText content={transcript} />
+      </Box>
     </>
   );
 };
