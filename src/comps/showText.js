@@ -65,7 +65,7 @@ export default function ShowText({ content }) {
           </Button>
           <Button
             onClick={() => {
-              createNotionPage(summary);
+              createNotionPage(content);
             }}
           >
             Create Page
