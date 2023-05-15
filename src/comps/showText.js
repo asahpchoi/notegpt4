@@ -7,6 +7,7 @@ import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import Slide from "@mui/material/Slide";
 import { createNotionPage } from "./api.js";
+import Link from "@mui/material/Link";
 
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
@@ -16,6 +17,8 @@ export default function ShowText({ content }) {
   const [open, setOpen] = React.useState(false);
   const [notification, setNotification] = React.useState(false);
   const [message, setMessage] = React.useState("");
+  const url =
+    "https://freezing-gateway-555.notion.site/fd6156d0cfce4550bcfeabe28456a78b?v=fbeaa0439ae74e0797652510eb6a25fa";
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -67,6 +70,7 @@ export default function ShowText({ content }) {
           >
             Create Page
           </Button>
+          <Link href={url}>Notes</Link>
         </DialogActions>
       </Dialog>
       <Snackbar
