@@ -1,5 +1,13 @@
 import axios from "axios";
 
+async function createNotionPage(msg) {
+  const data = await axios.post("https://4q8slb-3000.csb.app/createPage", {
+    content: msg,
+  });
+
+  console.log({ data });
+}
+
 async function uploadToWhisper(blob) {
   const url = `https://4q8slb-3000.csb.app/upload`;
 
@@ -37,4 +45,4 @@ const init = async (setActasList) => {
   const msglist = await axios.get("https://4q8slb-3000.csb.app/getMessageList");
   setActasList(msglist.data);
 };
-export { uploadToWhisper, getSummary, init };
+export { uploadToWhisper, getSummary, init, createNotionPage };

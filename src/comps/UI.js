@@ -18,6 +18,7 @@ import MicIcon from "@mui/icons-material/Mic";
 import MicOffIcon from "@mui/icons-material/MicOff";
 import Fab from "@mui/material/Fab";
 import ShowText from "./showText.js";
+import { createNotionPage } from "./api.js";
 
 const LoadingPage = ({ loading }) => {
   return (
@@ -48,6 +49,14 @@ const Summary = ({ summary }) => {
       />
 
       <ShowText content={summary} />
+      <Button
+        variant="outlined"
+        onClick={() => {
+          createNotionPage(summary);
+        }}
+      >
+        Create Page
+      </Button>
     </>
   );
 };
@@ -127,6 +136,14 @@ const Transcript = ({
         </Button>
 
         <ShowText content={transcript} />
+        <Button
+          variant="outlined"
+          onClick={() => {
+            createNotionPage(transcript);
+          }}
+        >
+          Create Page
+        </Button>
       </Box>
     </>
   );
