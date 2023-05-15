@@ -18,7 +18,7 @@ export default function ShowText({ content }) {
   const [notification, setNotification] = React.useState(false);
   const [message, setMessage] = React.useState("");
   const url =
-    "https://freezing-gateway-555.notion.site/fd6156d0cfce4550bcfeabe28456a78b?v=fbeaa0439ae74e0797652510eb6a25fa";
+    "https://freezing-gateway-555.notion.site/fd6156d0cfce4550bcfeabe28456a78b";
 
   const handleClickOpen = () => {
     setOpen(true);
