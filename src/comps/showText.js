@@ -6,6 +6,7 @@ import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import Slide from "@mui/material/Slide";
+import { createNotionPage } from "./api.js";
 
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
@@ -58,6 +59,13 @@ export default function ShowText({ content }) {
             }}
           >
             Copy
+          </Button>
+          <Button
+            onClick={() => {
+              createNotionPage(summary);
+            }}
+          >
+            Create Page
           </Button>
         </DialogActions>
       </Dialog>
