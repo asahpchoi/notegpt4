@@ -131,37 +131,31 @@ function ChatCard({ item, removeCard, actasList, addCard, setLoading }) {
           </Link>
         )}
 
-        {item.type === "transcript" ? (
-          <Badge
-            badgeContent={actasList.length}
-            color="primary"
-            style={{ marginLeft: "auto" }}
+        <Badge
+          badgeContent={actasList.length}
+          color="primary"
+          style={{ marginLeft: "auto" }}
+        >
+          <ExpandMore
+            expand={expanded}
+            onClick={handleExpandClick}
+            aria-expanded={expanded}
+            aria-label="show more"
           >
-            <ExpandMore
-              expand={expanded}
-              onClick={handleExpandClick}
-              aria-expanded={expanded}
-              aria-label="show more"
-            >
-              <ExpandMoreIcon />
-            </ExpandMore>
-          </Badge>
-        ) : (
-          ""
-        )}
+            <ExpandMoreIcon />
+          </ExpandMore>
+        </Badge>
       </CardActions>
-      {item.type === "transcript" ? (
-        <Collapse in={expanded} timeout="auto" unmountOnExit>
-          <Actions
-            items={actasList}
-            transcript={content}
-            addCard={addCard}
-            setLoading={setLoading}
-          />
-        </Collapse>
-      ) : (
-        ""
-      )}
+
+      <Collapse in={expanded} timeout="auto" unmountOnExit>
+        <Actions
+          items={actasList}
+          transcript={content}
+          addCard={addCard}
+          setLoading={setLoading}
+        />
+      </Collapse>
+
       <Snackbar
         open={notification}
         autoHideDuration={3000}
