@@ -134,7 +134,7 @@ function Content() {
 
 function LoadingIcon() {
   return (
-    <svg width="180" height="300" xmlns="http://www.w3.org/2000/svg">
+    <svg width="180" height="400" xmlns="http://www.w3.org/2000/svg">
       <path
         d="M 10 80 Q 52.5 10, 95 80 T 180 80"
         stroke="green"
