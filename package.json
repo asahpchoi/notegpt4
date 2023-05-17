@@ -2,6 +2,7 @@
   "name": "react",
   "version": "1.0.0",
   "description": "React example starter project",
+  "homepage": "https://asahpchoi.github.io/notegpt4",
   "keywords": [
     "react",
     "starter"
@@ -12,9 +13,12 @@
     "@emotion/styled": "^11.11.0",
     "@mui/icons-material": "^5.11.16",
     "@mui/material": "^5.12.3",
+    "@notionhq/client": "^2.2.5",
     "axios": "^1.4.0",
     "firebase": "^9.21.0",
+    "gh-pages": "^5.0.0",
     "loader-utils": "3.2.1",
+    "lottie-react": "^2.4.0",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-mic": "^12.4.6",
@@ -28,7 +32,9 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "browserslist": [
     ">0.2%",

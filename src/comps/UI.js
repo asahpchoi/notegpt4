@@ -15,7 +15,9 @@ import Toolbar from "@mui/material/Toolbar";
 import AdbIcon from "@mui/icons-material/Adb";
 import Typography from "@mui/material/Typography";
 import MicIcon from "@mui/icons-material/Mic";
+import MicOffIcon from "@mui/icons-material/MicOff";
 import Fab from "@mui/material/Fab";
+import ShowText from "./showText.js";
 
 const LoadingPage = ({ loading }) => {
   return (
@@ -23,8 +25,11 @@ const LoadingPage = ({ loading }) => {
       sx={{ color: "#fff", zIndex: (theme) => theme.zIndex.drawer + 1 }}
       open={loading}
     >
-      <Box sx={{ width: 300 }}>
+      <Box sx={{ width: "80vw" }}>
         <Skeleton />
+        <Skeleton animation="wave" />
+        <Skeleton animation={false} />
+        <Skeleton animation="wave" />
         <Skeleton animation="wave" />
         <Skeleton animation={false} />
       </Box>
@@ -42,17 +47,10 @@ const Summary = ({ summary }) => {
         variant="filled"
         value={summary}
         className="multiline"
-        rows={4}
+        rows={5}
       />
-      <Button
-        variant="outlined"
-        onClick={() => {
-          navigator.share({ title: "Happy Share", text: summary });
-        }}
-      >
-        <ShareIcon />
-        Share
-      </Button>
+
+      <ShowText content={summary} />
     </>
   );
 };
@@ -68,11 +66,12 @@ const Recording = ({ setRecording, recording }) => {
   return (
     <Fab
       color="primary"
+      id="micicon"
       onClick={() => {
         setRecording(!recording);
       }}
     >
-      <MicIcon />
+      {!recording ? <MicIcon /> : <MicOffIcon color="secondary" />}
     </Fab>
   );
 };
@@ -92,7 +91,7 @@ const Transcript = ({
       <TextField
         label="Transcript or URL"
         multiline
-        rows={4}
+        rows={5}
         variant="filled"
         value={transcript}
         className="multiline"
@@ -101,28 +100,24 @@ const Transcript = ({
         }}
       />
       <Box className="input">
-        <FormControl fullWidth>
-          <InputLabel id="actaslabel">Act as</InputLabel>
-          <Select
-            labelId="actaslabel"
-            value={actas}
-            label="Act as"
-            onChange={(event) => {
-              setActas(event.target.value);
-            }}
-            defaultValue=""
-          >
-            {actasList.map((l, i) => {
-              return (
-                <MenuItem key={i} value={l}>
-                  {l}
-                </MenuItem>
-              );
-            })}
-          </Select>
-        </FormControl>
-      </Box>
-      <ButtonGroup>
+        <InputLabel id="actaslabel">Act as</InputLabel>
+        <Select
+          labelId="actaslabel"
+          value={actas}
+          onChange={(event) => {
+            setActas(event.target.value);
+          }}
+          defaultValue=""
+        >
+          {actasList.map((l, i) => {
+            return (
+              <MenuItem key={i} value={l}>
+                {l}
+              </MenuItem>
+            );
+          })}
+        </Select>
+
         <Button
           variant="outlined"
           onClick={async () => {
@@ -131,19 +126,11 @@ const Transcript = ({
             setLoading(false);
           }}
         >
-          <SummarizeIcon />
-          Get Summary
+          Run
         </Button>
-        <Button
-          variant="outlined"
-          onClick={() => {
-            navigator.share({ title: "Happy Share", text: transcript });
-          }}
-        >
-          <ShareIcon />
-          Share
-        </Button>
-      </ButtonGroup>
+
+        <ShowText content={transcript} />
+      </Box>
     </>
   );
 };
