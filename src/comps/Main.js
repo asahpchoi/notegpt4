@@ -110,14 +110,17 @@ function Content() {
               setCards([]);
             }}
           />
-          <ReactMic
-            record={recording}
-            onStop={onStop}
-            onData={onData}
-            mimeType="audio/mp3"
-          />
+          <div style={{ display: "none" }}>
+            <ReactMic
+              record={recording}
+              onStop={onStop}
+              onData={onData}
+              mimeType="audio/mp3"
+            />
+          </div>
         </BottomNavigation>
       </Stack>
+
       <Backdrop
         sx={{ color: "#fff", zIndex: (theme) => theme.zIndex.drawer + 1 }}
         open={loading}
