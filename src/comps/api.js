@@ -4,8 +4,9 @@ async function createNotionPage(msg) {
   const data = await axios.post("https://4q8slb-3000.csb.app/createPage", {
     content: msg,
   });
-
   console.log({ data });
+
+  return data.data.url;
 }
 
 async function uploadToWhisper(blob) {

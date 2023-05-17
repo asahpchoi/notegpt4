@@ -17,6 +17,8 @@ import { styled } from "@mui/material/styles";
 import Collapse from "@mui/material/Collapse";
 import Badge from "@mui/material/Badge";
 import { uploadToWhisper, getSummary, init, createNotionPage } from "./api.js";
+import Snackbar from "@mui/material/Snackbar";
+import Link from "@mui/material/Link";
 
 const ExpandMore = styled((props) => {
   const { expand, ...other } = props;
@@ -54,6 +56,9 @@ function Actions({ items, transcript, addCard, setLoading }) {
 function ChatCard({ item, removeCard, actasList, addCard, setLoading }) {
   const [content, setContent] = React.useState(item.content);
   const [expanded, setExpanded] = React.useState(false);
+  const [notification, setNotification] = React.useState(false);
+  const [message, setMessage] = React.useState("");
+  const [link, setLink] = React.useState(null);
 
   const handleExpandClick = () => {
     setExpanded(!expanded);
@@ -66,6 +71,7 @@ function ChatCard({ item, removeCard, actasList, addCard, setLoading }) {
         <TextareaAutosize
           style={{
             width: "100%",
+            border: 0,
           }}
           minRows={3}
           placeholder="Empty"
@@ -80,19 +86,31 @@ function ChatCard({ item, removeCard, actasList, addCard, setLoading }) {
         styles={{ "align-items": "end" }}
         style={{ paddingRight: 20 }}
       >
-        <IconButton
-          aria-label="Copy"
-          onClick={() => {
-            alert(item.id);
-          }}
-        >
-          <ContentCopyIcon />
+        <IconButton aria-label="Copy">
+          <ContentCopyIcon
+            onClick={() => {
+              setMessage("message copied!");
+              setNotification(true);
+              navigator.clipboard.writeText(content);
+            }}
+          />
         </IconButton>
         <IconButton aria-label="Share">
-          <ShareIcon />
+          <ShareIcon
+            onClick={() => {
+              navigator.share({ title: "Happy Share", text: content });
+            }}
+          />
         </IconButton>
         <IconButton aria-label="Create">
-          <EditNoteIcon />
+          <EditNoteIcon
+            onClick={async () => {
+              const url = await createNotionPage(content);
+              setMessage(`note created! ${url}`);
+              setLink(url);
+              setNotification(true);
+            }}
+          />
         </IconButton>
         <IconButton aria-label="Delete">
           <DeleteIcon
@@ -101,6 +119,17 @@ function ChatCard({ item, removeCard, actasList, addCard, setLoading }) {
             }}
           />
         </IconButton>
+
+        {link && (
+          <Link
+            href={link}
+            variant="body2"
+            target="_blank"
+            style={{ marginLeft: "auto" }}
+          >
+            Open Note
+          </Link>
+        )}
 
         {item.type === "transcript" ? (
           <Badge
@@ -133,6 +162,14 @@ function ChatCard({ item, removeCard, actasList, addCard, setLoading }) {
       ) : (
         ""
       )}
+      <Snackbar
+        open={notification}
+        autoHideDuration={3000}
+        onClose={() => {
+          setNotification(false);
+        }}
+        message={message}
+      ></Snackbar>
     </Card>
   );
 }
