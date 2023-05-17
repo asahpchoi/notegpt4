@@ -19,6 +19,7 @@ import Badge from "@mui/material/Badge";
 import { uploadToWhisper, getSummary, init, createNotionPage } from "./api.js";
 import Snackbar from "@mui/material/Snackbar";
 import Link from "@mui/material/Link";
+import Button from "@mui/material/Button";
 
 const ExpandMore = styled((props) => {
   const { expand, ...other } = props;
@@ -30,28 +31,6 @@ const ExpandMore = styled((props) => {
     duration: theme.transitions.duration.shortest,
   }),
 }));
-
-function Actions({ items, transcript, addCard, setLoading }) {
-  return (
-    <Box sx={{ width: "100%" }}>
-      <Stack spacing={1} style={{ marginLeft: "auto" }}>
-        {items.map((i) => (
-          <Chip
-            label={i}
-            onClick={async () => {
-              setLoading(true);
-              const summary = await getSummary(transcript, i);
-
-              addCard("summary", summary);
-              setLoading(false);
-            }}
-            style={{ margin: 5 }}
-          />
-        ))}
-      </Stack>
-    </Box>
-  );
-}
 
 function ChatCard({ item, removeCard, actasList, addCard, setLoading }) {
   const [content, setContent] = React.useState(item.content);
@@ -83,10 +62,11 @@ function ChatCard({ item, removeCard, actasList, addCard, setLoading }) {
       </CardContent>
 
       <CardActions
-        styles={{ "align-items": "end" }}
-        style={{ paddingRight: 20 }}
+        style={{
+          backgroundColor: "#eeeeff",
+        }}
       >
-        <IconButton aria-label="Copy">
+        <IconButton aria-label="Copy" style={{ marginLeft: "auto" }}>
           <ContentCopyIcon
             onClick={() => {
               setMessage("message copied!");
@@ -185,4 +165,33 @@ export function Cards({ cards, removeCard, addCard, setLoading }) {
       setLoading={setLoading}
     />
   ));
+}
+
+function Actions({ items, transcript, addCard, setLoading }) {
+  return (
+    <Box sx={{ width: "100%" }}>
+      <Stack
+        spacing={1}
+        style={{ marginLeft: "auto", backgroundColor: "#eeffee" }}
+      >
+        {items.map((i, k) => {
+          return (
+            <Button
+              variant="outlined"
+              onClick={async () => {
+                setLoading(true);
+                const summary = await getSummary(transcript, i);
+
+                addCard("summary", summary);
+                setLoading(false);
+              }}
+              style={{ margin: 5 }}
+            >
+              {i}
+            </Button>
+          );
+        })}
+      </Stack>
+    </Box>
+  );
 }

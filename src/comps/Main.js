@@ -6,7 +6,7 @@ import Stack from "@mui/material/Stack";
 
 import AppBar from "@mui/material/AppBar";
 import Typography from "@mui/material/Typography";
-import Button from "@mui/material/Button";
+
 import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
 import Toolbar from "@mui/material/Toolbar";
@@ -19,16 +19,15 @@ import MicOffIcon from "@mui/icons-material/MicOff";
 import { uploadToWhisper, getSummary, init } from "./api.js";
 import { ReactMic } from "react-mic";
 import Backdrop from "@mui/material/Backdrop";
-import Skeleton from "@mui/material/Skeleton";
+import AddBoxIcon from "@mui/icons-material/AddBox";
 import Box from "@mui/material/Box";
+import { LoadingIcon } from "./Loading";
 
 function Content() {
   const [cards, setCards] = React.useState([]);
   const [recording, setRecording] = React.useState(false);
   const [loading, setLoading] = React.useState(false);
-  const [transcript, setTranscript] = React.useState("Speak or Type here");
-  const [summary, setSummary] = React.useState();
-  const [actas, setActas] = React.useState("act as an assistant to take note");
+
   const [actasList, setActasList] = React.useState([]);
 
   React.useEffect(() => {
@@ -67,7 +66,13 @@ function Content() {
         spacing={2}
         className="main"
       >
-        <AppBar position="static">
+        <AppBar
+          position="static"
+          style={{
+            backgroundColor: "#eeffee",
+            color: "#223344",
+          }}
+        >
           <Toolbar>
             <IconButton
               size="large"
@@ -101,13 +106,27 @@ function Content() {
             setLoading={setLoading}
           />
         </Paper>
-        <BottomNavigation showLabels>
+        <BottomNavigation
+          showLabels
+          style={{
+            backgroundColor: "#ffeeee",
+            width: "100%",
+            margin: 0,
+          }}
+        >
           <BottomNavigationAction
             label="Record"
             icon={!recording ? <MicIcon /> : <MicOffIcon />}
             onClick={() => {
               setRecording(!recording);
               setCards([]);
+            }}
+          />
+          <BottomNavigationAction
+            label="Add"
+            icon={<AddBoxIcon />}
+            onClick={() => {
+              addCard([{ type: "transcript" }]);
             }}
           />
           <div style={{ display: "none" }}>
@@ -129,83 +148,6 @@ function Content() {
         <LoadingIcon />
       </Backdrop>
     </>
-  );
-}
-
-function LoadingIcon() {
-  return (
-    <svg width="180" height="400" xmlns="http://www.w3.org/2000/svg">
-      <path
-        d="M 10 80 Q 52.5 10, 95 80 T 180 80"
-        stroke="green"
-        fill="transparent"
-      >
-        <animate
-          attributeName="d"
-          begin="1s"
-          dur="3s"
-          values="M 10 80 Q 52.5 10, 95 80 T 180 80; M 10 80 Q 52.5 80, 95 80 T 180 80; M 10 80 Q 52.5 10, 95 80 T 180 80;"
-          repeatCount="indefinite"
-        />
-        <animate
-          attributeName="stroke"
-          begin="1s"
-          dur="10s"
-          values="red; orange; yellow; green; blue; indigo; violet; red"
-          repeatCount="indefinite"
-        />
-      </path>
-      <path
-        d="M 10 80 Q 52.5 80, 95 10 T 180 80"
-        stroke="green"
-        fill="transparent"
-      >
-        <animate
-          attributeName="d"
-          begin="1s"
-          dur="3s"
-          values="M 10 80 Q 52.5 80, 95 10 T 180 80; M 10 80 Q 52.5 80, 95 80 T 180 80; M 10 80 Q 52.5 80, 95 10 T 180 80"
-          repeatCount="indefinite"
-        />
-        <animate
-          attributeName="stroke"
-          begin="1s"
-          dur="10s"
-          values="red; orange; yellow; green; blue; indigo; violet; red"
-          repeatCount="indefinite"
-        />
-      </path>
-    </svg>
-  );
-}
-
-function Backup() {
-  return (
-    <Stack className="box">
-      <Header />
-      <div className="row content">
-        {!loading && (
-          <Recording setRecording={setRecording} recording={recording} />
-        )}
-
-        {!loading && transcript && (
-          <Transcript
-            transcript={transcript}
-            setTranscript={setTranscript}
-            actas={actas}
-            setActas={setActas}
-            setSummary={setSummary}
-            getSummary={getSummary}
-            setLoading={setLoading}
-            actasList={actasList}
-          />
-        )}
-
-        {!loading && summary && <Summary summary={summary} />}
-      </div>
-
-      <LoadingPage loading={loading} />
-    </Stack>
   );
 }
 
