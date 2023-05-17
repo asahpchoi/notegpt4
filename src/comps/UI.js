@@ -25,8 +25,11 @@ const LoadingPage = ({ loading }) => {
       sx={{ color: "#fff", zIndex: (theme) => theme.zIndex.drawer + 1 }}
       open={loading}
     >
-      <Box sx={{ width: 300 }}>
+      <Box sx={{ width: "80vw" }}>
         <Skeleton />
+        <Skeleton animation="wave" />
+        <Skeleton animation={false} />
+        <Skeleton animation="wave" />
         <Skeleton animation="wave" />
         <Skeleton animation={false} />
       </Box>

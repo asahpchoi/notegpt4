@@ -63,6 +63,7 @@ export default function App({ analytics }) {
         </div>
 
         <LoadingPage loading={loading} />
+
         <ReactMic
           visualSetting="frequencyBars"
           record={recording}
