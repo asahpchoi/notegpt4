@@ -63,7 +63,7 @@ function ChatCard({ item, removeCard, actasList, addCard, setLoading }) {
 
       <CardActions
         style={{
-          backgroundColor: "#eeeeff",
+          backgroundColor: "#7fa99b",
         }}
       >
         <IconButton aria-label="Copy" style={{ marginLeft: "auto" }}>
