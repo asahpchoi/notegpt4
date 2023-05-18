@@ -1,7 +1,9 @@
 import axios from "axios";
 
+const domain = "https://4q8slb-3000.csb.app";
+
 async function createNotionPage(msg) {
-  const data = await axios.post("https://4q8slb-3000.csb.app/createPage", {
+  const data = await axios.post(`${domain}/createPage`, {
     content: msg,
   });
   console.log({ data });
@@ -10,7 +12,7 @@ async function createNotionPage(msg) {
 }
 
 async function uploadToWhisper(blob) {
-  const url = `https://4q8slb-3000.csb.app/upload`;
+  const url = `${domain}/upload`;
 
   const data = new FormData();
 
@@ -28,7 +30,7 @@ async function uploadToWhisper(blob) {
 
 async function getSummary(transcript, actas) {
   const result = await axios.post(
-    `https://4q8slb-3000.csb.app/getSummary`,
+    `${domain}/getSummary`,
     {
       transcript,
       actas,
@@ -43,7 +45,7 @@ async function getSummary(transcript, actas) {
 }
 
 const init = async (setActasList) => {
-  const msglist = await axios.get("https://4q8slb-3000.csb.app/getMessageList");
+  const msglist = await axios.get(`${domain}/getMessageList`);
   setActasList(msglist.data);
 };
 export { uploadToWhisper, getSummary, init, createNotionPage };

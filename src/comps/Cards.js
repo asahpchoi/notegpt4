@@ -12,7 +12,7 @@ import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import ContentCopyIcon from "@mui/icons-material/ContentCopy";
 import EditNoteIcon from "@mui/icons-material/EditNote";
 import DeleteIcon from "@mui/icons-material/Delete";
-import Chip from "@mui/material/Chip";
+
 import { styled } from "@mui/material/styles";
 import Collapse from "@mui/material/Collapse";
 import Badge from "@mui/material/Badge";
@@ -20,6 +20,7 @@ import { uploadToWhisper, getSummary, init, createNotionPage } from "./api.js";
 import Snackbar from "@mui/material/Snackbar";
 import Link from "@mui/material/Link";
 import Button from "@mui/material/Button";
+import "animate.css";
 
 const ExpandMore = styled((props) => {
   const { expand, ...other } = props;
@@ -44,7 +45,10 @@ function ChatCard({ item, removeCard, actasList, addCard, setLoading }) {
   };
 
   return (
-    <Card sx={{ minWidth: 275, margin: 2 }}>
+    <Card
+      sx={{ minWidth: 275, margin: 2 }}
+      className="animate__animated animate__backInLeft"
+    >
       <CardContent>
         <Typography variant="body2"> </Typography>
         <TextareaAutosize
@@ -63,7 +67,7 @@ function ChatCard({ item, removeCard, actasList, addCard, setLoading }) {
 
       <CardActions
         style={{
-          backgroundColor: "#7fa99b",
+          backgroundColor: "#fdffcd",
         }}
       >
         <IconButton aria-label="Copy" style={{ marginLeft: "auto" }}>

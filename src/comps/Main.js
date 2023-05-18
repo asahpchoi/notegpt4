@@ -66,10 +66,13 @@ function Content() {
         spacing={2}
         className="main"
         style={{
-          backgroundColor: "#7fa99b",
+          backgroundColor: "#e0ffcd",
         }}
       >
-        <AppBar position="static" style={{ backgroundColor: "#394a51" }}>
+        <AppBar
+          position="static"
+          style={{ backgroundColor: "#e0ffcd", color: "#333333" }}
+        >
           <Toolbar>
             <IconButton
               size="large"
@@ -106,7 +109,7 @@ function Content() {
         <BottomNavigation
           showLabels
           style={{
-            backgroundColor: "#7fa99b",
+            backgroundColor: "#e0ffcd",
             width: "100%",
             margin: 0,
           }}

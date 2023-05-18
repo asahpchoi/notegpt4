@@ -2,26 +2,9 @@ html,
 body {
   height: 100%;
   margin: 0em;
-  background-color: #7fa99b;
+  background-color: #e0ffcd;
 }
 
 .main {
   height: 90vh;
-}
-
-.firstColor {
-  background: #394a51;
-  color: blue;
-}
-
-.second-color {
-  background: #7fa99b;
-}
-
-.third-color {
-  background: #fbf2d5;
-}
-
-.fourth-color {
-  background: #fdc57b;
 }
